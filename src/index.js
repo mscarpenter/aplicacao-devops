@@ -1,4 +1,10 @@
-data = {'integrantes':[
+import express from "express"
+import path from "path"
+
+const app = express()
+const PORT = process.env.PORT || 3333
+
+const data = {'integrantes':[
 
 {'nome':'Bernardo Bregeron'},
 {'nome':'Lucas Ricci'},
@@ -7,12 +13,16 @@ data = {'integrantes':[
 ]}
 
 app.get('/', (req, res) => {
-  res.sendFile('views/index.html', { root: __dirname });
+  res.sendFile( "./src/views/index.html", {root: process.cwd()});
 });
 
 
 app.get('/integrantes', (req, res) => {
 
-res.json(data)
+  res.json(data)
 
+})
+
+app.listen(PORT, () => {
+  console.log("server is running")
 })
